@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"simple_payments/config"
 	"simple_payments/usecase"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,7 @@ import (
 
 type AuthController struct {
 	authUseCase usecase.AuthUseCase
+	rg          *gin.RouterGroup
 }
 
 func (a *AuthController) LoginHandler(c *gin.Context) {
@@ -44,6 +46,13 @@ func (a *AuthController) RegisterCustomerHandle(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "register succcesfully"})
 
 }
-func NewAuthController(authUseCase usecase.AuthUseCase) *AuthController {
-	return &AuthController{authUseCase: authUseCase}
+
+func (a *AuthController) Route() {
+	a.rg.POST(config.Login, a.LoginHandler)
+	a.rg.POST(config.Register, a.RegisterCustomerHandle)
+	a.rg.POST(config.Logout, a.LogoutHander)
+}
+
+func NewAuthController(authUseCase usecase.AuthUseCase, rg *gin.RouterGroup) *AuthController {
+	return &AuthController{authUseCase: authUseCase, rg: rg}
 }

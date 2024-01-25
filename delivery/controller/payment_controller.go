@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"simple_payments/config"
 	"simple_payments/usecase"
 	"strconv"
 
@@ -11,6 +12,7 @@ import (
 
 type PaymentController struct {
 	paymentUseCase usecase.PaymentUseCase
+	rg             *gin.RouterGroup
 }
 
 func (p *PaymentController) PaymentHandler(c *gin.Context) {
@@ -47,7 +49,12 @@ func (p *PaymentController) TransactionHistoryHandle(c *gin.Context) {
 	c.JSON(http.StatusOK, transactions)
 }
 
-func NewPaymentController(paymentUseCase usecase.PaymentUseCase) *PaymentController {
-	return &PaymentController{paymentUseCase: paymentUseCase}
+func (p *PaymentController) Route() {
+	p.rg.POST(config.Transaction, p.PaymentHandler)
+	p.rg.GET(config.History, p.TransactionHistoryHandle)
+}
+
+func NewPaymentController(paymentUseCase usecase.PaymentUseCase, rg *gin.RouterGroup) *PaymentController {
+	return &PaymentController{paymentUseCase: paymentUseCase, rg: rg}
 
 }

@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"simple_payments/config"
 	"simple_payments/usecase"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +11,7 @@ import (
 
 type MerchantController struct {
 	merchantUc usecase.MerchantUseCase
+	rg         *gin.RouterGroup
 }
 
 func (m *MerchantController) RegisterMerchantHandler(c *gin.Context) {
@@ -43,7 +45,12 @@ func (m *MerchantController) FindByNameHandle(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"name": name})
 }
 
-func NewMerchantController(merchantUc usecase.MerchantUseCase) *MerchantController {
-	return &MerchantController{merchantUc: merchantUc}
+func (a *MerchantController) Route() {
+	a.rg.POST(config.RegisterMerchant, a.RegisterMerchantHandler)
+
+}
+
+func NewMerchantController(merchantUc usecase.MerchantUseCase, rg *gin.RouterGroup) *MerchantController {
+	return &MerchantController{merchantUc: merchantUc, rg: rg}
 
 }
