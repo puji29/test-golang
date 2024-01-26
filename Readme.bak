@@ -4,7 +4,11 @@ ini adalah aplikasi payment simple. Dimana memiliki beberap fitur diantarannya y
 
 
 3.	register merchant:localhost:8080/api/v1/registerMerchant
-4.	transaction:localhost:8080/api/v1/transaction
-5.	history transaction:localhost:8080/api/v1/history
+
+
+
+4.	transaction: localhost:8080/api/v1/transaction
+
+5.	history transaction: loclahost:8080/api/v1/history
 
     

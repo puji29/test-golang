@@ -24,6 +24,7 @@ func (a *paymentUseCase) MakePayment(sender string, receiver string, amount floa
 	senderCustomer, err := a.customerRepo.FindByUsername(sender)
 	fmt.Println(err, "ini sender")
 	if err != nil {
+		fmt.Println(err)
 		if err == ErrCustomerNotFound {
 			return fmt.Errorf("sender not found")
 		} else {
