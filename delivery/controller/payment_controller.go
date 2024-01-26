@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"simple_payments/config"
+	"simple_payments/entity/dto"
 	"simple_payments/usecase"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,26 +16,19 @@ type PaymentController struct {
 }
 
 func (p *PaymentController) PaymentHandler(c *gin.Context) {
+	var data dto.PaymentDto
 
-	from := c.PostForm("from")
-	to := c.PostForm("to")
-	amount := c.PostForm("amount")
-	fmt.Println(from)
-	fmt.Println(to)
-	fmt.Println(amount)
-
-	amountFloat, err := strconv.ParseFloat(amount, 64)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid amount"})
-		return
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
 	}
-	err = p.paymentUseCase.MakePayment(from, to, amountFloat)
+
+	err := p.paymentUseCase.MakePayment(data.From, data.To, data.Amount)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("payment succesfully. %s tranfer %f to %s", from, amountFloat, to)})
+	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("payment succesfully. %s tranfer %f to %s", data.From, data.Amount, data.To)})
 }
 
 func (p *PaymentController) TransactionHistoryHandle(c *gin.Context) {

@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"simple_payments/config"
+	"simple_payments/entity/dto"
 	"simple_payments/usecase"
 
 	"github.com/gin-gonic/gin"
@@ -16,10 +16,12 @@ type AuthController struct {
 
 func (a *AuthController) LoginHandler(c *gin.Context) {
 
-	username := c.PostForm("username")
-	password := c.PostForm("password")
+	var data dto.AuthRequestDto
 
-	message, err := a.authUseCase.Login(username, password)
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
+	}
+	message, err := a.authUseCase.Login(data.Username, data.Password)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
@@ -35,11 +37,13 @@ func (a *AuthController) LogoutHander(c *gin.Context) {
 
 func (a *AuthController) RegisterCustomerHandle(c *gin.Context) {
 
-	username := c.PostForm("username")
-	password := c.PostForm("password")
+	var data dto.AuthRequestDto
 
-	err := a.authUseCase.Register(username, password)
-	fmt.Println(err)
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
+	}
+
+	err := a.authUseCase.Register(data.Username, data.Password)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Register failed"})
 		return

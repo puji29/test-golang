@@ -22,7 +22,7 @@ type paymentUseCase struct {
 
 func (a *paymentUseCase) MakePayment(sender string, receiver string, amount float64) error {
 	senderCustomer, err := a.customerRepo.FindByUsername(sender)
-	fmt.Println(senderCustomer, "ini sender")
+	fmt.Println(err, "ini sender")
 	if err != nil {
 		fmt.Println(err)
 		if err == ErrCustomerNotFound {
