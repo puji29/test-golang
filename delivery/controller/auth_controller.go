@@ -20,12 +20,15 @@ func (a *AuthController) LoginHandler(c *gin.Context) {
 
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
+		return
 	}
+
 	message, err := a.authUseCase.Login(data.Username, data.Password)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"message": message})
 }
 

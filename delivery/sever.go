@@ -33,6 +33,7 @@ func (s *Server) Run() {
 }
 
 func NewServer() *Server {
+
 	customerRepo := repository.NewInMemoryCustomerRepository()
 	merchantRepo := repository.NewInMemoryMerchantRepository()
 	paymentRepo := repository.NewInMemoryPaymentRepository()
