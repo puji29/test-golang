@@ -19,5 +19,19 @@ APi Memiliki beberap fitur diantarannya yakni :
 6. logout : customer dapat melakukan logout akun dengan mengakses loclahost:8080/api/v1/logout di postman seperti di gambar :
     ![Logo](./assets/image/logout.png)
 
+DEPLOYMENT TO REPLIT
+
+1. Login akun replit, jika belum maka registrasi.
+2. Klik Create Repl di pojok kiri atas seperti digamabar ini :
+   ![Logo](./assets/image/deploy1.png)
+3. Memilih template "GO", menulis tittle dan kemudian mengklik Create Repl.
+4. Selanjutnya mengclone github di bagian shell seperti digambar :
+   ![Logo](./assets/image/clone%20github.png)
+5. lalu masuk ke directiry folder dengan perintah :
+    cd nama-directory
+6. setelah masuk ke directory jalankan perintah 
+    "go run ." sperti digambar :
+    ![Logo](./assets/image/done.png)
+
 
     
