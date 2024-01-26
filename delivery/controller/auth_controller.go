@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"simple_payments/config"
 	"simple_payments/usecase"
@@ -38,6 +39,7 @@ func (a *AuthController) RegisterCustomerHandle(c *gin.Context) {
 	password := c.PostForm("password")
 
 	err := a.authUseCase.Register(username, password)
+	fmt.Println(err)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Register failed"})
 		return
