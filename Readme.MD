@@ -19,19 +19,37 @@ APi Memiliki beberap fitur diantarannya yakni :
 6. logout : customer dapat melakukan logout akun dengan mengakses loclahost:8080/api/v1/logout di postman seperti di gambar :
     ![Logo](./assets/image/logout.png)
 
-DEPLOYMENT TO REPLIT
+DEPLOYMENT TO RAILway.APP
 
-1. Login akun replit, jika belum maka registrasi.
-2. Klik Create Repl di pojok kiri atas seperti digamabar ini :
-   ![Logo](./assets/image/deploy1.png)
-3. Memilih template "GO", menulis tittle dan kemudian mengklik Create Repl.
-4. Selanjutnya mengclone github di bagian shell seperti digambar :
-   ![Logo](./assets/image/clone%20github.png)
-5. lalu masuk ke directiry folder dengan perintah :
-    cd nama-directory
-6. setelah masuk ke directory jalankan perintah 
-    "go run ." sperti digambar :
-    ![Logo](./assets/image/done.png)
+1. Login akun raywails, jika belum maka registrasi.
+2. Klik Deploy from repo seperti digamabar ini :
+   ![Logo](./assets/image/deployr1.png)
+3. Klik Configuration GIthub App.
+4. Selanjutnya pilih repository yang ingin dideploy seperti digambar :
+   ![Logo](./assets/image/deplor3.png)
+5. lalu klik initialize.
+6. Setelah itu akan kembali ke menu awal trus klik deploy from repo lagi kemudian klik repositori seperti digambar ini :
+    ![Logo](./assets/image/deployr5.png)
+7. Klik Deploy Now seperti digambar :
+  ![Logo](./assets/image/deplorr6.png)
+8. Selanjutnya menambahka variabel PORT dengan nilai 8080 seperti digambar :
+   ![Logo](./assets/image/menabhport.png)
+9. Tunggu proses hingga selesai seprti digambar :
+    ![Logo](./assets/image/donerr.png)
+
+TEST DI POSTMAN 
+1. Register :
+   ![Logo](./assets/image/deploytest.png)
+2. Login :
+   ![Logo](./assets/image/deploytestlogin.png)
+3. Register Merchant :
+   ![Logo](./assets/image/deployregistertest.png)
+4. Transaction:
+   ![Logo](./assets/image/deploytesttransaction.png)
+5. History:
+   ![Logo](./assets/image/historydeploytest.png)
+6. Logout :
+   ![Logo](./assets/image/deploytestlogout.png)
 
 
     
